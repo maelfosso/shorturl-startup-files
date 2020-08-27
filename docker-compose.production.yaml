@@ -1,0 +1,42 @@
+version: "3.7"
+
+services:
+  db:
+    image: mongo
+    ports:
+      - 27017:27017
+    restart: always
+    networks: 
+      - shorturl-db
+    
+  api:
+    image: https://github.com/maelfosso/shorturl-api.git
+    ports: 
+      - 3000:3000
+    environment: 
+      NODE_ENV: production
+      MONGODB_URI: mongodb://db:27017/shorturl_prod
+    depends_on: 
+      - db
+    networks: 
+      - shorturl
+      - shorturl-db
+
+  webapp:
+    image: https://github.com/maelfosso/shorturl-webapp.git
+    environment: 
+      NODE_ENV: production
+      VUE_APP_API_URL: api:3000
+    networks: 
+      - shorturl
+
+  nginx:
+    image: https://github.com/maelfosso/shorturl-nginx.git
+    ports:
+      - 80:80
+    networks: 
+      - shorturl
+
+networks: 
+  - shorturl
+  - shorturl-db
