@@ -38,5 +38,5 @@ services:
       - shorturl
 
 networks: 
-  - shorturl
-  - shorturl-db
+  shorturl:
+  shorturl-db:

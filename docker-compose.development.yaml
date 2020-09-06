@@ -1,0 +1,62 @@
+version: "3.1"
+
+services:
+  db:
+    image: mongo
+    ports:
+      - 27018:27017
+    restart: always
+    networks: 
+      - shorturl-db
+    
+  api:
+    build: ./api
+    image: shorturl/api
+    command: ["npm", "run", "watch:dev"]
+    volumes: 
+      - ./api:/home/node/app
+    ports: 
+      - 3000:3000
+    environment: 
+      NODE_ENV: development
+      MONGODB_URI_LOCAL: mongodb://db:27017/shorturl_dev
+    restart: always
+    depends_on: 
+      - db
+    networks: 
+      - shorturl
+      - shorturl-db
+
+  webapp:
+    build: 
+      context: ./webapp/
+      dockerfile: Dockerfile.development
+    image: shorturl/webapp
+    volumes: 
+      - ./webapp:/app
+    ports:
+      - 8080:8080
+    depends_on: 
+      - api
+    environment: 
+      NODE_ENV: development
+      VUE_APP_API_URL: http://localhost:3000
+    networks: 
+      - shorturl
+
+  # nginx:
+  #   build: ../nginx
+  #   image: shorturl/nginx
+  #   environment: 
+  #     WEBAPP_PORT: 8080
+  #   ports:
+  #     - 90:80
+  #   networks: 
+  #     - shorturl
+  #   depends_on: 
+  #     - webapp
+  #     - api
+
+networks: 
+  shorturl:
+  shorturl-db:
