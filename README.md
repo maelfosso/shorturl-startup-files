@@ -10,9 +10,15 @@ Starting point of a app for shorting URL
 - Docker Compose
 - Bash
 
+## Prerequisite
+
+- Git
+- Docker
+- Docker Compose
+
 ## Files
 
-- `docker-compose.development.yaml`: Docker compose file for development environment. It will work only with the related repositories available, that is, [API - Backend]() and [WebApp - Frontend]()
+- `docker-compose.development.yaml`: Docker compose file for development environment. It will work only with the related repositories available, that is, [API - Backend](https://github.com/maelfosso/shorturl-api) and [WebApp - Frontend](https://github.com/maelfosso/shorturl-webapp)
 - `docker-compose.production.yaml`: Docker compose file for production environment. Just run it and the magic will take place.
 - `start.sh`: The easy way to start it in a development environment.
 
@@ -35,8 +41,8 @@ $> ./start.sh
 ```
 It will 
 1. Create a repository `shorturl`
-2. Download the Github repository of the [Backend]() and put it into the folder `api`
-3. Download the Github repository of the [Frontend]() and it into the folder `webapp`
+2. Download the Github repository of the [Backend](https://github.com/maelfosso/shorturl-api) and put it into the folder `api`
+3. Download the Github repository of the [Frontend](https://github.com/maelfosso/shorturl-webapp) and it into the folder `webapp`
 3. Download the current repository
 4. Run the docker composite file for `development`: `docker-compose.development.yaml`
 
