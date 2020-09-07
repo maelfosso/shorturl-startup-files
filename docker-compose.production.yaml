@@ -10,7 +10,8 @@ services:
       - shorturl-db
     
   api:
-    image: https://github.com/maelfosso/shorturl-api.git
+    build:
+      context: https://github.com/maelfosso/shorturl-api.git
     ports: 
       - 3000:3000
     environment: 
@@ -23,7 +24,8 @@ services:
       - shorturl-db
 
   webapp:
-    image: https://github.com/maelfosso/shorturl-webapp.git
+    build: 
+      context: https://github.com/maelfosso/shorturl-webapp.git
     environment: 
       NODE_ENV: production
       VUE_APP_API_URL: api:3000

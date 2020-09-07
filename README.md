@@ -47,6 +47,12 @@ It will
 4. Run the docker composite file for `development`: `docker-compose.development.yaml`
 
 
+To Run the application in `production` mode
+```
+$> curl -o docker-compose.development.yaml https://raw.githubusercontent.com/maelfosso/shorturl-startup-files/master/docker-compose.production.yaml
+$> docker-compose -f docker-compose.production.yaml up
+```
+In `production` environemnt, no files will be downloaded, the context is directly connected to the Github repository.
 
 ## Authors
  
