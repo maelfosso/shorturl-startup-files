@@ -27,11 +27,11 @@ fi
 echo "[SHORTURL START.SH] GIT command exists"
 
 echo "[SHORTURL START.SH] Start downloading API github repository"
-git clone https://github.com/maelfosso/shorturl-api api
+git clone https://github.com/maelfosso/shorturl-api api && (cd api && npm install)
 echo "[SHORTURL START.SH] API github repository downloaded"
 
 echo "[SHORTURL START.SH] Start downloading WebApp github repository"
-git clone https://github.com/maelfosso/shorturl-webapp webapp
+git clone https://github.com/maelfosso/shorturl-webapp webapp && (cd webapp && npm install)
 echo "[SHORTURL START.SH] WebApp github repository downloaded"
 
 echo "[SHORTURL START.SH] Start downloading Startup-Files github repository"
